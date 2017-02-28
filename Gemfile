@@ -49,3 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Token based authentication with devise and omniauth
 gem 'devise_token_auth'
 gem 'omniauth'
+
+# Serializing for json output
+gem 'active_model_serializers'
