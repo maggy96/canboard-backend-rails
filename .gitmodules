@@ -1,0 +1,3 @@
+[submodule "canboard-frontend"]
+	path = canboard-frontend
+	url = gogs@mainframe.goerlitz.tech:canboardery/canboard-frontend.git
