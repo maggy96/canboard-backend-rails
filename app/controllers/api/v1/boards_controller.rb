@@ -3,12 +3,12 @@ module Api::V1
 
     # GET /v1/boards
     def index
-      render json: current_v1_user.boards
+      render json: @current_v1_user.boards
     end
 
     # GET /v1/boards/{id}
     def show
-      render json: Board.find(params[:id])
+      render json: @current_v1_user.boards.where(id: params[:id])
     end
 
   end
