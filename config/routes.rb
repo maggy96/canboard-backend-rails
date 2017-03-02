@@ -9,4 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # Catchall for actually serving the html/js/css files from the frontend
+  match ':file' => 'static#show', via: [:get, :post, :put, :delete], :constraints => {:file => /.*/}
+
 end
