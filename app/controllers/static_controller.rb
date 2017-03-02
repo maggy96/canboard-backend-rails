@@ -3,7 +3,7 @@ class StaticController < ApplicationController
   def show
     file = params[:file]
     if file.nil? || file.blank?
-      redirect_to 'index.html'
+      redirect_to '/index.html'
       return
     end
     base_paths = [
@@ -18,7 +18,7 @@ class StaticController < ApplicationController
         return
       end
     end
-    redirect_to '404.html'
+    redirect_to '/404.html'
   end
 
 end
