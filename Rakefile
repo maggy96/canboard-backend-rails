@@ -4,3 +4,9 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+desc "Compile frontend assets"
+task :sasscompile do
+  puts "Compiling frontend assets"
+  system("bundle exec sass --watch canboard-frontend/src/sass/site.scss:canboard-frontend/resources/public/css/site.css")
+end
