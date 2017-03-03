@@ -52,3 +52,8 @@ gem 'omniauth'
 
 # Serializing for json output
 gem 'active_model_serializers'
+
+# Cleaning database after tests
+group :test do
+  gem 'database_cleaner'
+end
