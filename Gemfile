@@ -30,6 +30,10 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rspec'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+  gem 'guard-bundler', require: false
+  gem 'guard-rubocop', require: false
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'pry-byebug'

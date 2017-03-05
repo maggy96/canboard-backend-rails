@@ -16,9 +16,10 @@ describe Api::V1::BoardsController do
 
     it 'returns the serialized board attributes' do
       expect(JSON.parse(response.body)['data'][0]['attributes']).to eq(
-        {"title" => "Project: Exit Matrix", 
-         "description" => "Follow the white rabbit",
-         "cards" => [] })
+        "title" => "Project: Exit Matrix",
+        "description" => "Follow the white rabbit",
+        "cards" => []
+      )
     end
   end
 end
