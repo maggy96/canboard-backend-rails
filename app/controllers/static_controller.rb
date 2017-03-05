@@ -2,23 +2,34 @@ class StaticController < ApplicationController
 
   def show
     file = params[:file]
-    if file.nil? || file.blank?
-      redirect_to '/index.html'
-      return
-    end
-    base_paths = [
-      Rails.root.join('canboard-frontend', 'target', 'cljsbuild', 'public'),
-      Rails.root.join('canboard-frontend', 'resources', 'public')
-    ]
-
+      if file.nil? || file.blank?
+        render_static fallback_path.join('index.html')
+        return
+      end
     base_paths.each do |path|
       f = File.join(path, file)
       if File.exists?(f)
-        send_file f, disposition: 'inline'
+        render_static f
         return
       end
     end
-    redirect_to '/404.html'
+    render_static fallback_path.join('404.html')
+  end
+
+  private
+  def render_static(file)
+    send_file file, disposition: 'inline'
+  end
+
+  def base_paths
+    [
+      Rails.root.join('canboard-frontend', 'target', 'cljsbuild', 'public'),
+      Rails.root.join('canboard-frontend', 'resources', 'public')
+    ]
+  end
+
+  def fallback_path
+    base_paths.last
   end
 
 end
