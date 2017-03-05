@@ -3,7 +3,7 @@ class StaticController < ApplicationController
   def show
     file = params[:file]
       if file.nil? || file.blank?
-        render_static fallback_path.join('index.html')
+        render_static fallback_path.join(Rails.env.production? ? 'index-prod.html' : 'index.html')
         return
       end
     base_paths.each do |path|
