@@ -14,9 +14,8 @@ describe Api::V1::UsersController do
     end
 
     it 'returns the serialized user attributes' do
-      expect(JSON.parse(response.body)['data']['attributes']).to eq(
-        {"name" => "Thomas A. Anderson", 
-         "email" => "thomas.a.anderson@metacortex.com" })
+      expect(JSON.parse(response.body)['data']['attributes']).to eq("name" => "Thomas A. Anderson",
+                                                                    "email" => "thomas.a.anderson@metacortex.com")
     end
   end
 end
