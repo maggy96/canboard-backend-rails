@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+For development:
+
+* Rake tasks
+
+* git submodule
