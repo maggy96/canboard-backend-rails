@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
       resources :users, only: [:index, :show]
+
       resources :boards, only: [:index, :show] do
-        resources :cards
+        resources :lists, only: [:index, :show] do
+          resources :cards, only: [:index, :show]
+        end
       end
 
       mount_devise_token_auth_for 'User', at: 'auth'

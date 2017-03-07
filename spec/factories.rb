@@ -10,4 +10,9 @@ FactoryGirl.define do
     description "Follow the white rabbit"
     user_id 1
   end
+
+  factory :list do
+    title "Done"
+    board_id 1
+  end
 end

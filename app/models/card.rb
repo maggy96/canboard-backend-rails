@@ -1,4 +1,4 @@
 class Card < ApplicationRecord
-  belongs_to :board
+  belongs_to :list
   validates :title, presence: true
 end

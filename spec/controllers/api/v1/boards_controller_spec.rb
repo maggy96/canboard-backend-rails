@@ -18,7 +18,7 @@ describe Api::V1::BoardsController do
       expect(JSON.parse(response.body)['data'][0]['attributes']).to eq(
         "title" => "Project: Exit Matrix",
         "description" => "Follow the white rabbit",
-        "cards" => []
+        "lists" => []
       )
     end
   end
