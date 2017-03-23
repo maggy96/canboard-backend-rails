@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
       resources :users, only: [:index, :show]
-
-      resources :boards, only: [:index, :show, :create] do
+      resources :boards, only: [:index, :show, :create, :destroy] do
         resources :lists, only: [:index, :show] do
           resources :cards, only: [:index, :show]
         end
@@ -19,6 +18,6 @@ Rails.application.routes.draw do
   end
 
   # Catchall for actually serving the html/js/css files from the frontend
-  match ':file' => 'static#show', via: [:get, :post, :put, :delete], :constraints => {:file => /.*/}
+  match ':file' => 'static#show', via: [:get, :post, :put], :constraints => {:file => /.*/}
 
 end
