@@ -3,7 +3,7 @@ module Api
     class ListsController < ApiController
       # GET /v1/board/{id}/lists
       def index
-        render json: @current_v1_user.boards.find(params[:board_id]).lists
+        render json: @current_v1_user.boards.find(params[:board_id]).lists, exclude: ['cards']
       end
 
       # GET /v1/board/{id}/lists/{id}
@@ -13,9 +13,9 @@ module Api
 
       def create
         board = @current_v1_user.boards.find(params[:board_id])
-        render json: { error: "Board could not be found" }, status: 404 if board.nil?
+        (render json: { error: "Board could not be found" }, status: 404 && return) if board.nil?
         pa = params.require(:list).permit(:title, :description)
-        pa[:board_id] = params[:board_id]
+        pa[:board_id] = board.id
         list = List.new(pa)
         if list.save
           render json: list
@@ -25,7 +25,7 @@ module Api
       end
 
       def destroy
-        list = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:list_id])
+        list = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:id])
         if list.nil?
           render json: { error: "Could not find list" }, status: 404
         else
