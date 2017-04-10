@@ -27,7 +27,7 @@ module Api
 
       # DELETE /v1/boards/{id}/list/{id}/cards
       def destroy
-        card = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:list_id]).cards.find(params[:card_id])
+        card = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:list_id]).cards.find(params[:id])
         if card.nil?
           render json: { error: "Could not find card" }, status: 404
         else
