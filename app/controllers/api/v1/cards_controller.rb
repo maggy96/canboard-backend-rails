@@ -25,6 +25,17 @@ module Api
         end
       end
 
+      def update
+        card = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:list_id]).cards.find(params[:id])
+        (render json: { error: "Card could not be found" }, status: 404 && return) if card.nil?
+        pa = params.require(:card).permit(:title, :description, :list_id)
+        if card.update_attributes(pa)
+          render json: card
+        else
+          render json: { message: "Could not update card", error: card.errors }, status: 400
+        end
+      end
+
       # DELETE /v1/boards/{id}/list/{id}/cards
       def destroy
         card = @current_v1_user.boards.find(params[:board_id]).lists.find(params[:list_id]).cards.find(params[:id])
