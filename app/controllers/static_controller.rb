@@ -12,7 +12,7 @@ class StaticController < ApplicationController
       /js\/(.*)/    => dynamic_path,
       /css\/(.*)/   => resource_path,
       /img\/(.*)/   => resource_path,
-      /(.*)\.html/  => resource_path
+      /(.*)\.html/  => rails_resource_path
     }
   end
 
@@ -42,8 +42,12 @@ class StaticController < ApplicationController
     Rails.root.join('canboard-frontend', 'resources', 'public')
   end
 
+  def rails_resource_path
+    Rails.root.join('public')
+  end
+
   def default_file
-    resource_path.join(Rails.env.production? ? 'index-prod.html' : 'index.html')
+    rails_resource_path.join(Rails.env.production? ? 'index-prod.html' : 'index.html')
   end
 
 end
